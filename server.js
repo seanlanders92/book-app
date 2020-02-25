@@ -14,12 +14,14 @@ app.use(express.static('./public'));
 
 
 app.get('/', renderHomePage);
-
+app.get('/searches/new', newSearch)
 function renderHomePage(request, response){
 
     response.render('./index.ejs');
 }
-
+function newSearch(request, response){
+    response.render('./pages/searches/new.ejs');
+  }
 
 
 
