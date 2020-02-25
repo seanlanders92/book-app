@@ -4,12 +4,28 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const superagent = require('superagent');
+require('ejs');
 const PORT = process.env.PORT || 3001;
+
+// tells express to use the ejs templating view engine
+app.set('view engine', 'ejs');
+app.use(express.urlencoded({extended: true}));
+app.use(express.static('./public'));
+
+
+app.get('/', renderHomePage);
+
+function renderHomePage(request, response){
+
+    response.render('./index.ejs');
+}
+
+
+
+
 
 
 // turn on the server
-client.connect()
-  .then(
     app.listen(PORT, () => {
       console.log(`listening to ${PORT}`);
-    }))
+    })
