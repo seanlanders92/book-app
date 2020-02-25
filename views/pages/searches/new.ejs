@@ -3,25 +3,29 @@
   <head>
     <title>Book Collection</title>
   </head>
+  <link rel="stylesheet" type="text/css" href="/styles/base.css">
+
   <body>
     <main>
+      <header>Best Books!</header>
       <h4>Search by Title or Author</h4>
       <form action="/searches" method="post">
-        <input type="text" name="search" placeholder="Enter a title or author" required>
-        <fieldset>
+        <input class = "grid-item" type="text" name="search" placeholder="Enter a title or author" required>
+        <fieldset class = "grid-item">
           <label for="title">
             <span>Title</span>
             <input type="radio" name="search" value="title" required>
           </label>
         </fieldset>
-        <fieldset>
+        <fieldset class = "grid-item">
           <label for="author">
             <span>Author</span>
             <input type="radio" name="search" value="author" required>
           </label>
         </fieldset>
-        <button type="submit">Search the Google Books API</button>
+        <button class = "grid-item" type="submit">Search the Google Books API</button>
       </form>
     </main>
+    <footer></footer>
   </body>
 </html>
