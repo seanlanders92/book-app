@@ -7,7 +7,16 @@
   <body>
     <main>
       <h4>My Book Collection</h4>
-      
+      <% bookArray.forEach(element => { %>
+      <section class="book-view container">
+        <ul>
+          <li><%= element.title %></li>
+          <li><%= element.author %></li>
+          <li><%= element.isbn %></li>
+          <li><img src='<%= element.image_url %>'></img></li>
+        </ul>
+      </section>
+      <% }) %>
     </main>
   </body>
 </html>

@@ -18,10 +18,21 @@ client.on('error', err => console.error(err));
 
 app.get('/', renderHomePage);
 app.get('/searches/new', newSearch)
-function renderHomePage(request, response){
 
-  response.render('./index.ejs');
+function renderHomePage(request, response){
+  console.log('hello');
+  let SQL = 'SELECT * FROM books';
+
+  client.query(SQL)
+  .then(results =>{
+    let books = results.rows;
+    response.render('./index.ejs', {bookArray: books});
+  })
+  .catch(error =>{
+    Error(error, response);
+  });
 }
+
 function newSearch(request, response){
   response.render('./pages/searches/new.ejs');
 }
@@ -29,8 +40,14 @@ function newSearch(request, response){
 
 
 
-
+function Error(error, response){
+  console.error(error);
+  return response.status(500).send('ya done f**kd up A A Ron.')
+}
 // turn on the server
-app.listen(PORT, () => {
-  console.log(`listening to ${PORT}`);
-});
+client.connect()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`listening on ${PORT}`);
+    })
+  })
