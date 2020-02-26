@@ -21,12 +21,16 @@ app.get('/searches/new', newSearch)
 
 function renderHomePage(request, response){
   console.log('hello');
-  let SQL = 'SELECT * FROM books';
 
+  
+  let SQL = 'SELECT * FROM books';
+  
   client.query(SQL)
   .then(results =>{
     let books = results.rows;
-    response.render('./index.ejs', {bookArray: books});
+    let bookNumber = books.length;
+    console.log(bookNumber);
+    response.render('./index.ejs', {bookArray: books, bookNumber});
   })
   .catch(error =>{
     Error(error, response);
