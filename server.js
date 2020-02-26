@@ -14,8 +14,7 @@ app.use(express.static('./public'));
 
 
 app.get('/', renderHomePage);
-app.get('/searches/new', newSearch);
-app.get('/books/:id')
+app.get('/searches/new', newSearch)
 function renderHomePage(request, response){
 
   response.render('./index.ejs');
