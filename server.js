@@ -3,25 +3,19 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-const pg = require('pg');
-const superagent = require('superagent');
 require('ejs');
 const PORT = process.env.PORT || 3001;
 
-const client = require('.scripts/client');
-const handleSearch = require('.scripts/handleSearch');
+const handleSearch = require('./scripts/handleSearch');
 
 // tells express to use the ejs templating view engine
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('./public'));
 
-const client = new pg.Client(process.env.DATABASE_URL);
-client.on('error', err => console.error(err));
-
 app.get('/', renderHomePage);
-app.get('/searches/new', newSearch);
-app.get('/searches', (request, response) => {
+app.get('/searches', newSearch);
+app.post('/searches', (request, response) => {
   handleSearch(request, response);
 });
 
@@ -31,10 +25,6 @@ function renderHomePage(request, response){
 function newSearch(request, response){
   response.render('./pages/searches/new.ejs');
 }
-
-
-
-
 
 // turn on the server
 app.listen(PORT, () => {
