@@ -12,7 +12,7 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('./public'));
 
-
+app.get('/books/:id');
 app.get('/', renderHomePage);
 app.get('/searches/new', newSearch)
 function renderHomePage(request, response){
