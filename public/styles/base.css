@@ -1,34 +1,52 @@
 
-body{
+*{
     box-sizing: border-box;
-    background-color: salmon;
+    font-family: 'Quicksand';
+
+}
+body{
+    background-image: url(/img/many-old-books.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    width: 30%;
+    margin: 0;
+    margin-top: 50px;
+    margin-left: 5%;
+    height: 800px;
+}
+header{
+    font-size: 2em;
+    height:60px;
+    width:50%
+}
+div {
+    width: 35px;
+    height: 5px;
+    background-color: black;
+    margin: 6px 0;
+}
+h4{
+    padding-bottom: 7px;
 }
 main{
     display: grid;
     grid-template-columns: auto;
-    height: 500px;
+    width: 300px;
 }
-header{
-    text-align: center;
-}
-form{
-    margin: 0;
-}
-h4{
-    text-align: center;
-}
-input{
-    width: 100%;
-}
+
 .grid-item{
-    margin: 0;
-    width: 90%;
+    width: 100%;
     height: 30px;
-    padding: 0;
+    padding-top: 7px;
     border: 0;
 }
 fieldset{
-    padding: 0;
-    margin: 0;
-    border: 0;
+    text-align: left;
+}
+li{
+    padding-top: 10px;
+    display: inline;
+}
+nav{
+    padding-top: 10px;
 }
