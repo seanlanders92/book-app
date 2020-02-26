@@ -8,6 +8,9 @@ const superagent = require('superagent');
 require('ejs');
 const PORT = process.env.PORT || 3001;
 
+const client = require('.scripts/client');
+const handleSearch = require('.scripts/handleSearch');
+
 // tells express to use the ejs templating view engine
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
@@ -17,9 +20,12 @@ const client = new pg.Client(process.env.DATABASE_URL);
 client.on('error', err => console.error(err));
 
 app.get('/', renderHomePage);
-app.get('/searches/new', newSearch)
-function renderHomePage(request, response){
+app.get('/searches/new', newSearch);
+app.get('/searches', (request, response) => {
+  handleSearch(request, response);
+});
 
+function renderHomePage(request, response){
   response.render('./index.ejs');
 }
 function newSearch(request, response){
