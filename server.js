@@ -5,6 +5,7 @@ const express = require('express');
 const app = express();
 require('ejs');
 const PORT = process.env.PORT || 3001;
+const client = require('./scripts/client');
 
 const handleSearch = require('./scripts/handleSearch');
 
@@ -21,33 +22,25 @@ app.post('/searches', (request, response) => {
 });
 
 function renderHomePage(request, response){
-  response.render('./index.ejs');
-
-
-function renderHomePage(request, response){
   console.log('hello');
 
   let SQL = 'SELECT * FROM books';
-  
-  client.query(SQL)
-  .then(results =>{
-    let books = results.rows;
-    let bookNumber = books.length;
-    console.log(bookNumber);
-    response.render('./index.ejs', {bookArray: books, bookNumber});
-  })
-  .catch(error =>{
-    Error(error, response);
-  });
 
+  client.query(SQL)
+    .then(results =>{
+      let books = results.rows;
+      let bookNumber = books.length;
+      console.log(bookNumber);
+      response.render('./index.ejs', {bookArray: books, bookNumber});
+    })
+    .catch(error =>{
+      Error(error, response);
+    });
 }
 
 function newSearch(request, response){
   response.render('./pages/searches/new.ejs');
 }
-
-
-
 
 function Error(error, response){
   console.error(error);
@@ -59,5 +52,5 @@ client.connect()
   .then(() => {
     app.listen(PORT, () => {
       console.log(`listening on ${PORT}`);
-    })
-  })
+    });
+  });
