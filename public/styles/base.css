@@ -12,15 +12,37 @@ body{
     margin: 0;
     margin-top: 50px;
     margin-left: 5%;
-    height: 800px;
 }
 header{
     font-size: 2em;
     height:60px;
     width:50%
 }
+h1{
+    text-align: center;
+    display: inline;
+}
 menu{
     float: right;
+}
+section{
+    background-color: none;
+    width: 500px;
+    height: 700px;
+}
+ul{
+    background-image: url(/img/pngguru.com.png);
+    background-size: cover;
+    text-align:  center;
+    height: 100%;
+    width: 100%;
+    padding-top: 50px;
+}
+img{
+    margin-left: auto;
+    height: 500px;
+    padding-top: 50px;
+    border-radius: 15%;
 }
 div {
     width: 35px;
@@ -36,7 +58,9 @@ main{
     grid-template-columns: auto;
     width: 300px;
 }
-
+.collections{
+    display: inline;
+}
 .grid-item{
     width: 100%;
     height: 30px;
@@ -46,14 +70,34 @@ main{
 }
 fieldset{
     text-align: left;
-}
+} yes
 li{
     padding-top: 10px;
-    display: inline;
+    display: block;
 }
 nav{
     padding-top: 10px;
 }
 fieldset{
 display: inline;
+}
+.title{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 30px;
+}
+.author{
+    font-style: italic;
+}
+.button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(249, 236, 166);
+    padding: 7px 24px;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    border-radius: 50px;
+  }
+  
+.button:hover {
+    background-color: rgb(201, 135, 60); /* Green */
+    color: rgb(155, 52, 52);
 }
