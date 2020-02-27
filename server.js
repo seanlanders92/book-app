@@ -58,7 +58,7 @@ function displayOneBook(request,response){
 
   function displaySearchPage (request,response){
   //Display search page
-  response.render('./add-view.ejs');
+    response.render('./add-view.ejs');
   }
 
 
@@ -66,7 +66,7 @@ function displayOneBook(request,response){
     .then(results => {
       response.render('./detail.ejs',{bananas: results.rows});
     });
-  }
+}
 
 function Error(error, response){
   console.error(error);

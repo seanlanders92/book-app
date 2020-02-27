@@ -8,10 +8,9 @@
   </head>
   <body>
     <main>
+      <a href="./searches/">Search Books</a>
       <h4>My Book Collection:<%=' ' + bookNumber + " Total books in Library" %></h4>
       <% bookArray.forEach(element => { %>
-
-        <a href="./searches/">View Search</a>
       <section class="book-view container">
         <ul>
           <li><%='Title: ' + element.title + '.'%></li>
