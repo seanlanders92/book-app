@@ -8,11 +8,7 @@ require('ejs');
 require('pg');
 
 const methodOveride = require('meth-overide')
-
-const client = new pg.Client(process.env.DATABASE_URL);
-client.on('error', err => console.error(err));
-
-
+const client = require('./scripts/client');
 const PORT = process.env.PORT || 3001;
 
 // tells express to use the ejs templating view engine
@@ -26,13 +22,28 @@ app.use(methodOveride9('_method));
 
 app.get('/books/:book_id', displayOneBook);
 app.get('/', renderHomePage);
-app.get('/searches/new', newSearch)
-app.get('searches/new', )
+
+// app.get('/searches/new', newSearch);
+app.get('/searches', newSearch);
+app.post('/searches', handleSearch);
 
 function renderHomePage(request, response){
+  console.log('hello');
 
-  response.render('./index.ejs');
+  let SQL = 'SELECT * FROM books';
+
+  client.query(SQL)
+    .then(results =>{
+      let books = results.rows;
+      let bookNumber = books.length;
+      console.log(bookNumber);
+      response.render('./index.ejs', {bookArray: books, bookNumber});
+    })
+    .catch(error =>{
+      Error(error, response);
+    });
 }
+
 function newSearch(request, response){
   response.render('./pages/searches/new.ejs');
 }
@@ -55,6 +66,10 @@ function displayOneBook(request,response){
     .then(results => {
       response.render('./detail.ejs',{bananas: results.rows});
     });
+
+function Error(error, response){
+  console.error(error);
+  return response.status(500).send('ya done f**kd up A A Ron.');
 }
 
 
@@ -65,6 +80,6 @@ function displayOneBook(request,response){
 client.connect()
   .then(() => {
     app.listen(PORT, () => {
-      console.log(`listening to ${PORT}`);
+      console.log(`listening on ${PORT}`);
+    });
   });
-});
