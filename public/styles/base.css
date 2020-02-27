@@ -56,7 +56,7 @@ h4{
 main{
     display: grid;
     grid-template-columns: auto;
-    width: 300px;
+    width: 200px;
 }
 .collections{
     display: inline;
@@ -100,4 +100,24 @@ display: inline;
 .button:hover {
     background-color: rgb(201, 135, 60); /* Green */
     color: rgb(155, 52, 52);
+}
+@media screen and (min-width: 480px) {
+    body{
+        margin: auto;
+        width: 100%;
+    }
+    main{
+        /* margin-left: 20%; */
+    }
+    .grid-item{
+        display: inline-grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 100%;
+        width: 900px;
+    }
+    .book-view-container{
+        margin-top: 70px;
+        margin-left: 40px;
+        float: left;
+    }
 }
