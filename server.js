@@ -7,17 +7,17 @@ const superagent = require('superagent');
 require('ejs');
 require('pg');
 
-const methodOveride = require('meth-overide')
+const methodOveride = require('method-override')
 const client = require('./scripts/client');
 const PORT = process.env.PORT || 3001;
-
+const searchJs = require('./scripts/handleSearch');
 // tells express to use the ejs templating view engine
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('./public'));
 app.set('view engine', 'pg');
 app.use(express.urlencoded({extended:true}));
-app.use(methodOveride9('_method));
+app.use(methodOveride('_method'));
 
 
 app.get('/books/:book_id', displayOneBook);
@@ -25,7 +25,7 @@ app.get('/', renderHomePage);
 
 // app.get('/searches/new', newSearch);
 app.get('/searches', newSearch);
-app.post('/searches', handleSearch);
+app.post('/searches', searchJs);
 
 function renderHomePage(request, response){
   console.log('hello');
@@ -66,6 +66,7 @@ function displayOneBook(request,response){
     .then(results => {
       response.render('./detail.ejs',{bananas: results.rows});
     });
+  }
 
 function Error(error, response){
   console.error(error);
@@ -82,4 +83,4 @@ client.connect()
     app.listen(PORT, () => {
       console.log(`listening on ${PORT}`);
     });
-  });
+  })
