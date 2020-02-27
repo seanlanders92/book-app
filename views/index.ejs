@@ -2,8 +2,8 @@
 <html lang="en">
   <head>
     <title>Book Collection</title>
-    <link href="./styles/base.css" rel="stylesheet" type="text/css" />
-    <link href="./styles/reset.css" rel="stylesheet" type="text/css" />
+    <link href="/styles/reset.css" rel="stylesheet" type="text/css" />
+    <link href="/styles/base.css" rel="stylesheet" type="text/css" />
 
   </head>
   <body>
@@ -13,11 +13,11 @@
       <% bookArray.forEach(element => { %>
       <section class="book-view container">
         <ul>
-          <li><%='Title: ' + element.title + '.'%></li>
-          <li><%='Author: ' + element.author + '.'%></li>
-          <li><%='ISBN: ' + element.isbn + '.'%></li>
-          <li><%='Description: ' + element.description + '.'%></li>
-          <li><%='Bookshelf: ' + element.bookshelf + '.'%></li>
+          <li class="title"><%='Title: ' + element.title + '.'%></li>
+          <li class="author"><%='Author: ' + element.author + '.'%></li>
+          <li class= "isbn"><%='ISBN: ' + element.isbn + '.'%></li>
+          <li class= "description"><%='Description: ' + element.description + '.'%></li>
+          <li class= "bookshelf"><%='Bookshelf: ' + element.bookshelf + '.'%></li>
           <li><img src='<%= element.image_url %>'></img></li>
         </ul>
       </section>
