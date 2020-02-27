@@ -7,6 +7,7 @@ const superagent = require('superagent');
 require('ejs');
 require('pg');
 
+const methodOveride = require('meth-overide')
 
 const client = new pg.Client(process.env.DATABASE_URL);
 client.on('error', err => console.error(err));
@@ -20,6 +21,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static('./public'));
 app.set('view engine', 'pg');
 app.use(express.urlencoded({extended:true}));
+app.use(methodOveride9('_method));
 
 
 app.get('/books/:book_id', displayOneBook);
@@ -48,7 +50,7 @@ function displayOneBook(request,response){
   response.render('./add-view.ejs');
   }
 
-  
+
   client.query(sql,safeValues)
     .then(results => {
       response.render('./detail.ejs',{bananas: results.rows});
