@@ -8,12 +8,12 @@
         <% searchResults.forEach( book => { %>
           <article>
             <img src="<%= book.image_url %>">
-            <h3><%= book.title %></h3>
-            <h4><%= book.author %></h4>
-            <p><%= book.description %></p>
+            <h3><%='Title: ' + book.title %></h3>
+            <h4><%='Author: ' + book.author %></h4>
+            <p><%='Description: ' + book.description %></p>
             <form id="create-form" action="/add" method="post">
                 <fieldset>
-                  <legend>Add a task</legend>
+                  <legend>Add a Book</legend>
                   <input type="hidden" name="title" value="<%= book.title %>">
                   <input type="hidden" name="author" value="<%= book.author %>">
                   <input type="hidden" name="isbn" value="<%= book.isbn %>">
