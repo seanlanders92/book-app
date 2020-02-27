@@ -20,7 +20,6 @@ app.set('view engine', 'pg');
 app.use(express.urlencoded({extended:true}));
 app.use(methodOveride('_method'));
 
-
 app.get('/books/:book_id', displayOneBook);
 app.get('/', renderHomePage);
 
@@ -51,22 +50,15 @@ function newSearch(request, response){
 }
 
 function displayOneBook(request,response){
-  // get parrams
+  // get params
   // goto DB with the ID - find the book
   // display the details
   let id = request.params.book_id;
   let sql = 'SELECT * FROM books WHERE id=$1';
   let safeValues = [id];
-
-  function displaySearchPage (request,response){
-  //Display search page
-    response.render('./add-view.ejs');
-  }
-
-
   client.query(sql,safeValues)
     .then(results => {
-      response.render('./detail.ejs',{bananas: results.rows});
+      response.render('./pages/books/detail.ejs',{book: results.rows});
     });
 }
 
@@ -75,14 +67,10 @@ function Error(error, response){
   return response.status(500).send('ya done f**kd up A A Ron.');
 }
 
-
-
-
-
 // turn on the server
 client.connect()
   .then(() => {
     app.listen(PORT, () => {
       console.log(`listening on ${PORT}`);
     });
-  })
+  });

@@ -9,15 +9,20 @@
   <link rel="stylesheet" type="text/css" href="/styles/reset.css">
   <link rel="stylesheet" type="text/css" href="/styles/base.css">
 
-
   <body>
     <main>
-      <header>Best Books!</header>
+      <header></header>
       <menu>
         <div></div>
         <div></div>
         <div></div>
       </menu>
+      <section>
+        <h3><%= book.title %></h3>
+        <h4><%= book.author %></h4>
+        <img src="<%= book.image_url">
+        <p><%= book.description %></p>
+      </section>
       <h4>Search by Title or Author</h4>
       <footer>
           <nav>
@@ -30,19 +35,3 @@
     </main>
 </body>
 </html>
-<!-- <form action="/searches" method="post">
-  <input class = "grid-item" type="text" name="search" placeholder="Enter a title or author" required>
-  <fieldset class = "grid-item">
-    <label for="title">
-      <span>Title</span>
-      <input type="radio" name="search" value="title" required>
-    </label>
-  </fieldset>
-  <fieldset class = "grid-item">
-    <label for="author">
-      <span>Author</span>
-      <input type="radio" name="search" value="author" required>
-    </label>
-  </fieldset>
-  <button class = "grid-item" type="submit">Search the Google Books API</button>
-</form> -->
