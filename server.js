@@ -15,11 +15,9 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static('./public'));
 
 app.get('/', renderHomePage);
-app.get('/searches/new', newSearch)
+// app.get('/searches/new', newSearch);
 app.get('/searches', newSearch);
-app.post('/searches', (request, response) => {
-  handleSearch(request, response);
-});
+app.post('/searches', handleSearch);
 
 function renderHomePage(request, response){
   console.log('hello');
@@ -44,7 +42,7 @@ function newSearch(request, response){
 
 function Error(error, response){
   console.error(error);
-  return response.status(500).send('ya done f**kd up A A Ron.')
+  return response.status(500).send('ya done f**kd up A A Ron.');
 }
 
 // turn on the server
