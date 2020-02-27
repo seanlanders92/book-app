@@ -9,6 +9,7 @@ require('pg');
 
 const methodOveride = require('method-override')
 const client = require('./scripts/client');
+const addNewBook = require('./scripts/add');
 const PORT = process.env.PORT || 3001;
 const searchJs = require('./scripts/handleSearch');
 // tells express to use the ejs templating view engine
@@ -26,6 +27,7 @@ app.get('/', renderHomePage);
 // app.get('/searches/new', newSearch);
 app.get('/searches', newSearch);
 app.post('/searches', searchJs);
+app.post('/add', addNewBook);
 
 function renderHomePage(request, response){
   console.log('hello');
@@ -58,7 +60,7 @@ function displayOneBook(request,response){
 
   function displaySearchPage (request,response){
   //Display search page
-  response.render('./add-view.ejs');
+    response.render('./add-view.ejs');
   }
 
 
@@ -66,7 +68,7 @@ function displayOneBook(request,response){
     .then(results => {
       response.render('./detail.ejs',{bananas: results.rows});
     });
-  }
+}
 
 function Error(error, response){
   console.error(error);
